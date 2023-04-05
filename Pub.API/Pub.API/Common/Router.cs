@@ -2,6 +2,9 @@
     public static class Router {
 
         public const string VersionOne = "V1";
+        public const string Admin = "Admin";
+        public const string User = "User";
+
         public static class Authentication {
             public const string PrefixName = "Authentication";
 
