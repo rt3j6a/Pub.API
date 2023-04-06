@@ -19,8 +19,9 @@ namespace Pub.Core.Common {
             public const string TeamAlreadyRegistered = "Ilyen csapat már regisztrálva van ezzel a névvel!";
             public const string TeamMemberCountInvalid = "Érvénytelen csapat létszám.";
             public const string SourceEmailAlreadyRegistered = "Ezzel az e-mail címmel már regisztráltak egy csapatot!";
-
+            public const string TeamAssignmentDoestnExistsOrDeleted = "A jelentkezés nem létezik, vagy már törölve lett!";
             public const string AssignmentAdded = "Sikeres jelentkezés!";
+            public const string AssignmentStatusUpdatedSuccessfully = "A jelentkezés státusza sikeresen frissítve lett!";
         }
 
         public static class Event {

@@ -18,8 +18,10 @@
 
             public const string AddTeamAssignment = "AddTeamAssignment";
             public const string DeleteTeamAssignment = "DeleteTeamAssignment";
-            public const string GetTeamAssignments = "GetTeamAssignments";
+            public const string GetAllTeamAssignments = "GetAllTeamAssignments";
+            public const string GetActiveTeamAssignments = "GetAcitveTeamAssignments";
             public const string HandleTeamAssignment = "HandleTeamAssignment";
+            public const string UpdateTeamAssignmentStatus = "UpdateTeamAssignmentStatus";
         }
 
         public static class Event {
