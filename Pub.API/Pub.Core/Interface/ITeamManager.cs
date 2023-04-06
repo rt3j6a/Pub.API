@@ -14,5 +14,7 @@ namespace Pub.Core.Interface {
         Task<(bool success, string message)> AddTeamAssignmentAsync(string teamName, decimal teamMemberCount, string sourceEmailAddress, int eventId);
 
         Task<(bool success, string message)> UpdateTeamAssignmentStatusAsync(int assignmentId, Common.TeamAssignmentStatus status);
+
+        Task<object?> GetTeamAssignmentAsync(int assignmentId);
     }
 }

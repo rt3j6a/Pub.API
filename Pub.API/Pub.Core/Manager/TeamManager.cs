@@ -52,6 +52,10 @@ namespace Pub.Core.Manager {
             return await provider.TeamAssignments.ToListAsync();
         }
 
+        public async Task<object?> GetTeamAssignmentAsync(int assignmentId) {
+            return await provider.TeamAssignments.FirstOrDefaultAsync(x => x.TeamAssignmentId == assignmentId);
+        }
+
         public async Task<(bool success, string message)> UpdateTeamAssignmentStatusAsync(int assignmentId, Common.TeamAssignmentStatus status) {
             var assignment=await provider.TeamAssignments.FirstOrDefaultAsync(x=>x.TeamAssignmentId==assignmentId);
 
@@ -59,7 +63,7 @@ namespace Pub.Core.Manager {
                 return (false, Messages.Team.TeamAssignmentDoestnExistsOrDeleted);
             }
 
-            assignment.TeamAssignmentStatusId = (int)assignmentId;
+            assignment.TeamAssignmentStatusId = (int)status;
 
             try {
                 provider.TeamAssignments.Update(assignment);

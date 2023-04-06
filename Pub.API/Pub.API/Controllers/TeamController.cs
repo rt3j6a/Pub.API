@@ -106,6 +106,27 @@ namespace Pub.API.Controllers {
             return Ok(new SuccessResponse { Message = result.message });
         }
 
+        [Route(Router.VersionOne + "/" + Router.Admin + "/" + Router.Team.GetTeamAssignment)]
+        [HttpGet]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
+        [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
+        [ProducesResponseType(statusCode: StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> GetTeamAssignment([FromQuery]string token, [FromQuery]GetTeamAssignmentRequest request) {
+            var auth = authenticationService.ValidateJSONWebToken(token);
+
+            if (auth == false) return Unauthorized();
+
+            var result = await teamManager.GetTeamAssignmentAsync(request.AssignmentId);
+
+            if (result == null) {
+                return NoContent();
+            }
+
+            return Ok(result);
+        }
+
 
     }
 }

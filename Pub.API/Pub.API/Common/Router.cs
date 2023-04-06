@@ -22,6 +22,7 @@
             public const string GetActiveTeamAssignments = "GetAcitveTeamAssignments";
             public const string HandleTeamAssignment = "HandleTeamAssignment";
             public const string UpdateTeamAssignmentStatus = "UpdateTeamAssignmentStatus";
+            public const string GetTeamAssignment = "GetTeamAssignment";
         }
 
         public static class Event {
@@ -32,6 +33,21 @@
             public const string AddEvent = "AddEvent";
             public const string GetEvent = "GetEvent";
             public const string UpdateEventStatus = "UpdateEventStatus";
+        }
+
+        public static class Table {
+            public const string PrefixName = "Table";
+
+            public const string GetAllTables = "GetAllTables";
+            public const string AddTable = "AddTable";
+            public const string DeleteTable = "DeleteTable";
+
+            public const string AddTableReservation = "AddTableReservation";
+            public const string GetTableReservation = "GetTableReservation";
+            public const string DeleteTableReservation = "DeleteTableReservation";
+            public const string UpdateTableReservationComment = "UpdateTableReservationComment";
+            public const string DeleteAllTableReservationForEvent = "DeleteAllTableReservationForEvent";
+
         }
     }
 }
