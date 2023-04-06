@@ -21,13 +21,17 @@ namespace Pub.API.Controllers
 
         [Route(Router.VersionOne + "/" +Router.Admin+"/"+ Router.Authentication.PrefixName + "/" + Router.Authentication.Login)]
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
-        {
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK,type:typeof(LoginResponse))]
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest,type:typeof(ErrorResponse))]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request) {
             var result = await authenticationManager.LoginAsync(request.LoginName,request.Password);
 
             if (result.success) {
                 var token = authenticationService.GenerateJSONWebToken(request.LoginName);
-                return Ok(token);
+                return Ok(new LoginResponse { Message = result.message ,AccessToken=token});
+
             }
 
             return BadRequest(new ErrorResponse { ErrorCode= (int)System.Net.HttpStatusCode.BadRequest, Message=result.message });
@@ -35,19 +39,27 @@ namespace Pub.API.Controllers
 
         [Route(Router.VersionOne + "/" +Router.Admin+"/"+ Router.Authentication.PrefixName + "/" + Router.Authentication.AddAccount)]
         [HttpPost]
-        public async Task<IActionResult> AddAccount([FromBody] AddAccountRequest request)
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(SuccessResponse))]
+        [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, type: typeof(ErrorResponse))]
+        public async Task<IActionResult> AddAccount([FromQuery]string token,[FromBody] AddAccountRequest request)
         {
+            var auth = authenticationService.ValidateJSONWebToken(token);
+
+            if (!auth) return Unauthorized();
+
             var result=await authenticationManager.AddAccountAsync(request.EmailAddress,request.LoginName,request.Password);
 
             if (result.success) {
-                return Ok(result.message);
+                return Ok(new SuccessResponse { Message = result.message });
             }
 
-            return Unauthorized(new ErrorResponse { ErrorCode=(int)System.Net.HttpStatusCode.Unauthorized, Message=result.message});
+            return BadRequest(new ErrorResponse { ErrorCode=(int)System.Net.HttpStatusCode.Unauthorized, Message=result.message});
         }
 
         [Route(Router.VersionOne + "/" + Router.Admin + "/" + Router.Authentication.PrefixName + "/" + Router.Authentication.TestToken)]
-        [HttpPost]
+        [HttpGet]
         public  IActionResult TestToken([FromBody] string token) {
             var result= authenticationService.ValidateJSONWebToken(token);
 

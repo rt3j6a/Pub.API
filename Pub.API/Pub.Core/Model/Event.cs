@@ -14,4 +14,6 @@ public partial class Event
     public DateTime EventAssignedDate { get; set; }
 
     public DateTime EventPinnedDateTime { get; set; }
+
+    public int EventStatusId { get; set; }
 }

@@ -13,7 +13,7 @@ namespace Pub.Core.Common
     {
         protected readonly IConfiguration configuration;
 
-        private IServiceScope scope;
+        private readonly IServiceScope scope;
 
         protected readonly DBProvider provider;
 

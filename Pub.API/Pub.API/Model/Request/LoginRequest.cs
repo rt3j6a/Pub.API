@@ -1,7 +1,10 @@
-﻿namespace Pub.API.Model.Request {
-    public class LoginRequest {
-        public string LoginName { get; set; }
+﻿using System.ComponentModel.DataAnnotations;
 
-        public string Password { get; set; }
+namespace Pub.API.Model.Request {
+    public class LoginRequest {
+        [Required]
+        public string LoginName { get; set; } = string.Empty;
+        [Required]
+        public string Password { get; set; } =  string.Empty;
     }
 }

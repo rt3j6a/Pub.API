@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,13 @@ namespace Pub.Core.Common {
             public const string SourceEmailAlreadyRegistered = "Ezzel az e-mail címmel már regisztráltak egy csapatot!";
 
             public const string AssignmentAdded = "Sikeres jelentkezés!";
+        }
+
+        public static class Event {
+            public const string EventAlreadyExistsWithGivenDetails = "Már létrehoztak egy eseményt ezzel a névvel.";
+            public const string EventAddedSuccessfully = "Esemény létrehozása sikeres volt!";
+            public const string EventDoesntExistsOrAlreadyRemoved = "Az esemény nem létezik, vagy már törölve van.";
+            public const string EventUpdatedSuccessfully = "Az esemény státusza sikeresen frissítve lett!";
         }
     }
 }

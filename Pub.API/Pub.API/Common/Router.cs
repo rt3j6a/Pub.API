@@ -21,5 +21,15 @@
             public const string GetTeamAssignments = "GetTeamAssignments";
             public const string HandleTeamAssignment = "HandleTeamAssignment";
         }
+
+        public static class Event {
+            public const string PrefixName = "Event";
+
+            public const string GetAllEvents = "GetAllEvents";
+            public const string GetActiveEvents = "GetActiveEvents";
+            public const string AddEvent = "AddEvent";
+            public const string GetEvent = "GetEvent";
+            public const string UpdateEventStatus = "UpdateEventStatus";
+        }
     }
 }

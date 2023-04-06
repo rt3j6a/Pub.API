@@ -22,6 +22,8 @@ public partial class DBProvider : DbContext
 
     public virtual DbSet<EventLikedQuestion> EventLikedQuestions { get; set; }
 
+    public virtual DbSet<EventStatus> EventStatuses { get; set; }
+
     public virtual DbSet<PicutreEventLink> PicutreEventLinks { get; set; }
 
     public virtual DbSet<Post> Posts { get; set; }
@@ -51,6 +53,14 @@ public partial class DBProvider : DbContext
         {
             entity.Property(e => e.EventAssignedDate).HasColumnType("date");
             entity.Property(e => e.EventPinnedDateTime).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<EventStatus>(entity =>
+        {
+            entity.HasKey(e => e.EventStatusId).HasName("PK__EventSta__2EB666ACDD2A7AD4");
+
+            entity.Property(e => e.EventStatusId).ValueGeneratedNever();
+            entity.Property(e => e.EventStatusName).HasMaxLength(20);
         });
 
         modelBuilder.Entity<PicutreEventLink>(entity =>
