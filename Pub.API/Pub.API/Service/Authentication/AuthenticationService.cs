@@ -40,9 +40,12 @@ namespace Pub.API.Service.Authentication
             var validationParameters = AuthenticationParameters.GetTokenValidationParameters(configuration);
 
             SecurityToken validatedToken;
-            IPrincipal principal = tokenHandler.ValidateToken(token, validationParameters, out validatedToken);
 
-            return true;
+            try {
+                IPrincipal principal = tokenHandler.ValidateToken(token, validationParameters, out validatedToken);
+                return true;
+            }catch(Exception) { return false; }
+            
         }
     }
 }

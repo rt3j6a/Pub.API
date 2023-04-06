@@ -18,13 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Admin\" />
-    <Folder Include="Controllers\User\" />
-    <Folder Include="Model\Response\" />
-    <Folder Include="Model\Request\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Pub.Core\Pub.Core.csproj" />
   </ItemGroup>
 
