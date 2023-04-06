@@ -24,6 +24,8 @@ namespace Pub.API.Controllers {
         [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
         [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
         [ProducesResponseType(statusCode: StatusCodes.Status401Unauthorized)]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public async Task<IActionResult> GetAllTeamAssignments([FromQuery] string token) {
             var auth = authenticationService.ValidateJSONWebToken(token);
 
@@ -43,6 +45,8 @@ namespace Pub.API.Controllers {
         [ProducesResponseType(statusCode: StatusCodes.Status200OK)]
         [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
         [ProducesResponseType(statusCode: StatusCodes.Status401Unauthorized)]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public async Task<IActionResult> GetActiveTeamAssignments([FromQuery] string token) {
             var auth = authenticationService.ValidateJSONWebToken(token);
 
@@ -62,6 +66,8 @@ namespace Pub.API.Controllers {
         [ProducesResponseType(statusCode: StatusCodes.Status200OK,type:typeof(SuccessResponse))]
         [ProducesResponseType(statusCode: StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest,type:typeof(ErrorResponse))]
+        [Consumes("application/json")]
+        [Produces("application/json")]
 
         public async Task<IActionResult> AddTeamAssignment([FromBody] AddTeamAssignmentRequest request) {
             var result = await teamManager.AddTeamAssignmentAsync(request.TeamName,request.TeamMemberCount,request.SourceEmailAddress,request.EventId);
@@ -81,6 +87,8 @@ namespace Pub.API.Controllers {
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(SuccessResponse))]
         [ProducesResponseType(statusCode: StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(statusCode: StatusCodes.Status400BadRequest, type: typeof(ErrorResponse))]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public async Task<IActionResult> UpdateTeamAssignmentStatus([FromQuery] string token,[FromBody] UpdateTeamAssignmentStatusRequest request) {
             var auth = authenticationService.ValidateJSONWebToken(token);
 
