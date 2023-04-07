@@ -47,6 +47,7 @@
             public const string DeleteTableReservation = "DeleteTableReservation";
             public const string UpdateTableReservationComment = "UpdateTableReservationComment";
             public const string DeleteAllTableReservationForEvent = "DeleteAllTableReservationForEvent";
+            public const string GetallTableReservations = "GetallTableReservations";
 
         }
     }

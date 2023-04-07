@@ -38,7 +38,6 @@ public partial class DBProvider : DbContext
 
     public virtual DbSet<TeamAssignmentStatus> TeamAssignmentStatuses { get; set; }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.UseCollation("Hungarian_100_CI_AI_SC_UTF8");
@@ -75,7 +74,6 @@ public partial class DBProvider : DbContext
 
         modelBuilder.Entity<Table>(entity =>
         {
-            entity.Property(e => e.TableId).ValueGeneratedNever();
             entity.Property(e => e.TableName).HasMaxLength(20);
         });
 

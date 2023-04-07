@@ -7,20 +7,24 @@ using System.Threading.Tasks;
 
 namespace Pub.Core.Interface {
     public interface ITableManager {
-        Task<IEnumerable<object>> GetAllTables();
+        Task<IEnumerable<object>> GetAllTablesAsync();
 
-        Task<IEnumerable<object>> GetFreeTables();
+        Task<IEnumerable<object>> GetFreeTablesAsync();
 
-        Task<(bool success, string message)> DeleteTable(int tableId);
+        Task<(bool success, string message)> DeleteTableAsync(int tableId);
 
-        Task<(bool success, string message)> AddTableReservation(int teamName, string? comment, int tableId, int eventId);
+        Task<(bool success, string message)> AddTableAsync(string tableName, decimal maxSeatNumber);
 
-        Task<object?> GetTableReservation(int reservationId);
+        Task<(bool success, string message)> AddTableReservationAsync(string teamName, string? comment, int tableId, int eventId);
 
-        Task<(bool success, string message)> DeleteTableReservation(int reservationId);
+        Task<object?> GetTableReservationAsync(int reservationId);
 
-        Task<(bool success, string message)> UpdateTableReservationComment(int reservationId, string comment);
+        Task<IEnumerable<object>> GetAllTableReservationsAsync();
 
-        Task<(bool success, string message)> DeleteAllTableReservationForEvent();
+        Task<(bool success, string message)> DeleteTableReservationAsync(int reservationId);
+
+        Task<(bool success, string message)> UpdateTableReservationCommentAsync(int reservationId, string comment);
+
+        Task<(bool success, string message)> DeleteAllTableReservationForEventAsync(int eventId);
     }
 }

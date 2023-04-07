@@ -30,5 +30,21 @@ namespace Pub.Core.Common {
             public const string EventDoesntExistsOrAlreadyRemoved = "Az esemény nem létezik, vagy már törölve van.";
             public const string EventUpdatedSuccessfully = "Az esemény státusza sikeresen frissítve lett!";
         }
+
+        public static class Table {
+            public const string TableAlreadyReserved = "Az asztal már ki van osztva egy másik csapathoz!";
+            public const string TableReservedSuccessfully = "Az asztal sikeresen kiosztva a csapathoz!";
+            public const string TeamAlreadyHasReservation = "A csapat már rendelkezik foglalt asztallal!";
+            public const string AllReservationDeletedSuccessfully = "Az esemény foglalásai sikeresen törölve!";
+            public const string NoReservationsToDelete = "Az eseményhez nem tartozik asztal foglalás, amit törölni lehetne!";
+            public const string TableDeletedSuccessfully = "Az asztal törlése sikeres volt!";
+            public const string TableDoesntExistsWithGivenId = "Az asztal nem létezik, vagy már törölve lett!";
+            public const string TableReservationDeletedSuccessfully = "Az asztal foglalás törlése sikeres volt!";
+            public const string TableReservationDoesntExistsWithGivenId = "Az asztal foglalás nem létezik, vagy már törölve lett!";
+            public const string TableReservationUpdatedSuccessfully = "A foglalás adatainak frissítése sikeres volt!";
+            public const string TableAlreadyRegisteredWithGivenName = "Már létezik asztal a megadott névvel!";
+            public const string TableAddedSuccessfully = "Asztal sikeresen regisztrálva!";
+            public const string TableSeatNumberMustBeGreaterThanZero = "Az asztalhoz megadott ülőhelyek száma nem lehet 0 vagy kisebb";
+        }
     }
 }
