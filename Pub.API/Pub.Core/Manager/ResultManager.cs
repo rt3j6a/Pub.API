@@ -32,13 +32,11 @@ namespace Pub.Core.Manager {
                 EventId = eventId
             };
 
-            try {
-                await provider.AddAsync(result);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Result.ResultAssignedSuccessfully);
-            }catch(Exception) {
-                return (false, Messages.InternalServerError);
-            }
+           
+            await provider.AddAsync(result);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Result.ResultAssignedSuccessfully);
+           
         }
 
         public async Task<IEnumerable<object>> GetAllResultsAsync() {
@@ -57,12 +55,9 @@ namespace Pub.Core.Manager {
         public async Task<(bool success, string message)> RemoveResultAsync(int resultId) {
             var result = await provider.Results.Where(x => x.ResultId == resultId).ExecuteDeleteAsync();
 
-            try {
-                await provider.SaveChangesAsync();
-                return result == 1 ? (true, Messages.Result.ResultDeletedSuccessfully) : (false, Messages.Result.ResultDoestnExistOrAlreadyDeleted);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            await provider.SaveChangesAsync();
+            return result == 1 ? (true, Messages.Result.ResultDeletedSuccessfully) : (false, Messages.Result.ResultDoestnExistOrAlreadyDeleted);
+            
         }
 
         public async Task<(bool success, string messsage)> UpdateResultScoreAsync(int resultId, float teamScore) {
@@ -73,16 +68,10 @@ namespace Pub.Core.Manager {
             }
 
             result.TeamScore = teamScore;
-
-            try {
-                provider.Results.Update(result);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Result.ResultTeamScoreUpdatedSuccessfully);
-            }catch(Exception) {
-                return (false, Messages.InternalServerError);
-            }
-
-            
+           
+            provider.Results.Update(result);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Result.ResultTeamScoreUpdatedSuccessfully);
         }
     }
 }

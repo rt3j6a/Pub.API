@@ -35,13 +35,9 @@ namespace Pub.Core.Manager {
                 TeamAssignmentStatusId=(int)Common.TeamAssignmentStatus.active
             };
 
-            try {
-                await provider.TeamAssignments.AddAsync(assignment);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Team.AssignmentAdded);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+             await provider.TeamAssignments.AddAsync(assignment);
+             await provider.SaveChangesAsync();
+             return (true, Messages.Team.AssignmentAdded);
         }
 
         public async Task<IEnumerable<object>> GetActiveTeamAssignmentsAsync() {
@@ -65,13 +61,9 @@ namespace Pub.Core.Manager {
 
             assignment.TeamAssignmentStatusId = (int)status;
 
-            try {
-                provider.TeamAssignments.Update(assignment);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Team.AssignmentStatusUpdatedSuccessfully);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            provider.TeamAssignments.Update(assignment);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Team.AssignmentStatusUpdatedSuccessfully);
         }
     }
 }

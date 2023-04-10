@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using NLog;
 using Pub.Core.Provider;
 using System.Text;
 
@@ -30,6 +31,18 @@ namespace Pub.API.Common {
             //  services.AddScoped<DBProvider>(provider => provider.GetService<DBProvider>());
 
             return services;
+        }
+
+        public static void ConfigureExceptionHandler(this IApplicationBuilder app) {
+            app.UseMiddleware<ExceptionHandler>();
+        }
+
+        public static void ConfigureLogger(this IApplicationBuilder app) {
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
+            //A logger service konfigurálása.
+            //services.AddTransient<ILoggerManager, LoggerService>();
+            //app.UseMiddleware<Logger>();
         }
     }
 }

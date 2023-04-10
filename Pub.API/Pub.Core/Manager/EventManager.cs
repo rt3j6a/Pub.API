@@ -32,14 +32,9 @@ namespace Pub.Core.Manager {
                 EventStatusId=(int)Common.EventStatus.draft
             };
 
-            try {
-                await provider.Events.AddAsync(newEvent);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Event.EventAddedSuccessfully);
-
-            }catch(Exception) {
-                return (false, Messages.InternalServerError);
-            }
+             await provider.Events.AddAsync(newEvent);
+             await provider.SaveChangesAsync();
+             return (true, Messages.Event.EventAddedSuccessfully);
         }
 
         public async Task<IEnumerable<object>> GetActiveEventsAsync() {
@@ -63,14 +58,9 @@ namespace Pub.Core.Manager {
 
             eventToUpdate.EventStatusId = (int)status;
 
-            try {
-                provider.Events.Update(eventToUpdate);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Event.EventUpdatedSuccessfully);
-
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            provider.Events.Update(eventToUpdate);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Event.EventUpdatedSuccessfully);
         }
 
         

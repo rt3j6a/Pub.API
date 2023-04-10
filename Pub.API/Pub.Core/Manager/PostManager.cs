@@ -24,25 +24,16 @@ namespace Pub.Core.Manager {
                 PostBody = postBody
             };
 
-            try {
-                await provider.Posts.AddAsync(post);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Post.PostCreatedSuccessfully);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
-        
+            await provider.Posts.AddAsync(post);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Post.PostCreatedSuccessfully);
         }
 
         public async Task<(bool success, string message)> DeletePostAsync(int postId) {
             var result = await provider.Posts.Where(x => x.PostId == postId).ExecuteDeleteAsync();
 
-            try {
-                await provider.SaveChangesAsync();
-                return result == 1 ? (true, Messages.Post.PostDeletedSuccessfully) : (false, Messages.Post.PostDoesntExistsOrDeleted);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            await provider.SaveChangesAsync();
+            return result == 1 ? (true, Messages.Post.PostDeletedSuccessfully) : (false, Messages.Post.PostDoesntExistsOrDeleted);
         }
 
         public async Task<IEnumerable<object>> GetAllPostsAsync() {
@@ -67,13 +58,10 @@ namespace Pub.Core.Manager {
             post.PostHeader = postHeader;
             post.PostBody = postBody;
 
-            try {
-                provider.Posts.Update(post);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Post.PostUpdatedSuccessfully);
-            }catch(Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            provider.Posts.Update(post);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Post.PostUpdatedSuccessfully);
+           
         }
     }
 }

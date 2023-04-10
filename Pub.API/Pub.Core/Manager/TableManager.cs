@@ -31,13 +31,9 @@ namespace Pub.Core.Manager {
                 MaxSeatNumber=decimal.ToInt32(maxSeatNumber)
             };
 
-            try {
-                await provider.Tables.AddAsync(table);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Table.TableAddedSuccessfully);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            await provider.Tables.AddAsync(table);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Table.TableAddedSuccessfully);
         }
 
         public async Task<(bool success, string message)> AddTableReservationAsync(string teamName, string? comment, int tableId, int eventId) {
@@ -60,48 +56,33 @@ namespace Pub.Core.Manager {
                 TableId=tableId
             };
 
-            try {
-                await provider.TableReservations.AddAsync(reservation);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Table.TableReservedSuccessfully);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            await provider.TableReservations.AddAsync(reservation);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Table.TableReservedSuccessfully);
         }
 
         public async Task<(bool success, string message)> DeleteAllTableReservationForEventAsync(int eventId) {
             var result=await provider.TableReservations.Where(x=>x.EventId.Equals(eventId)).ExecuteDeleteAsync();
 
-            try {
-                await provider.SaveChangesAsync();
-
-                return result > 0 ? (true,Messages.Table.AllReservationDeletedSuccessfully) : (false,Messages.Table.NoReservationsToDelete);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-
-            }
+            await provider.SaveChangesAsync();
+            return result > 0 ? (true,Messages.Table.AllReservationDeletedSuccessfully) : (false,Messages.Table.NoReservationsToDelete);
+            
         }
 
         public async Task<(bool success, string message)> DeleteTableAsync(int tableId) {
             var result = await provider.Tables.Where(x => x.TableId == tableId).ExecuteDeleteAsync();
 
-            try {
-                await provider.SaveChangesAsync();
-                return result == 1 ? (true, Messages.Table.TableDeletedSuccessfully) : (false, Messages.Table.TableDoesntExistsWithGivenId);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            
+            await provider.SaveChangesAsync();
+            return result == 1 ? (true, Messages.Table.TableDeletedSuccessfully) : (false, Messages.Table.TableDoesntExistsWithGivenId);
+            
         }
 
         public async Task<(bool success, string message)> DeleteTableReservationAsync(int reservationId) {
             var result=await provider.TableReservations.Where(x=>x.TableReservationId==reservationId).ExecuteDeleteAsync();
 
-            try {
-                await provider.SaveChangesAsync();
-                return result == 1 ? (true, Messages.Table.TableReservationDeletedSuccessfully) : (false, Messages.Table.TableReservationDoesntExistsWithGivenId);
-            } catch (Exception) {
-                return (false, Messages.InternalServerError);
-            }
+            await provider.SaveChangesAsync();
+            return result == 1 ? (true, Messages.Table.TableReservationDeletedSuccessfully) : (false, Messages.Table.TableReservationDoesntExistsWithGivenId);
         }
 
         public async Task<IEnumerable<object>> GetAllTableReservationsAsync() {
@@ -149,14 +130,9 @@ namespace Pub.Core.Manager {
 
             reservation.Comment = comment;
 
-            try {
-                provider.Update(reservation);
-                await provider.SaveChangesAsync();
-                return (true, Messages.Table.TableReservationUpdatedSuccessfully);
-
-            }catch(Exception) { 
-                return (false,Messages.InternalServerError);
-            }
+            provider.Update(reservation);
+            await provider.SaveChangesAsync();
+            return (true, Messages.Table.TableReservationUpdatedSuccessfully);
         }
     }
 }

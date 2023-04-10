@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Pub.API.Common;
 using Pub.API.Model.Request;
 using Pub.API.Model.Response;
