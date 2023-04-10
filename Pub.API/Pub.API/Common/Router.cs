@@ -62,5 +62,18 @@
             public const string GetPost = "GetPost";
 
         }
+
+        public static class Result {
+            public const string PrefixName = "Result";
+
+            public const string AddResult = "AddResult";
+            public const string RemoveResult = "RemoveResult";
+            public const string UpdateResultScore = "UpdateResultScore";
+            public const string GetAllResults = "GetAllResults";
+            public const string GetAllResultsByEvent = "GetAllResultsByEvent";
+            public const string GetResult = "GetResult";
+
+
+        }
     }
 }

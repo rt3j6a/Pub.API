@@ -54,5 +54,14 @@ namespace Pub.Core.Common {
             public const string PostDoesntExistsOrDeleted = "A posztot nem létezik, vagy már törölve lett!";
             public const string PostUpdatedSuccessfully = "A poszt sikeresen frissítve lett!";
         }
+
+        public static class Result {
+            public const string ResultForTeamAlreadyAssigned = "Ehhez a csapathoz már rögzítettek eredményt az eseménynél!";
+            public const string ScoreMustBeGreaterThanZero = "A megadott pontszámnak nagyobbnak kell lennie nullánál!";
+            public const string ResultAssignedSuccessfully = "Az eredmény rögzítése sikeres volt!";
+            public const string ResultDeletedSuccessfully = "Az eredmény törlése sikeres volt!";
+            public const string ResultDoestnExistOrAlreadyDeleted = "Az eredmény nem létezik, vagy már korábban törölve lett!";
+            public const string ResultTeamScoreUpdatedSuccessfully = "A pontszám frissítése sikeres volt!";
+        }
     }
 }
