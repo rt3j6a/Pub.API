@@ -50,5 +50,17 @@
             public const string GetallTableReservations = "GetallTableReservations";
 
         }
+
+        public static class Post {
+            public const string PrefixName = "Post";
+
+            public const string AddPost = "AddPost";
+            public const string DeletePost = "DeletePost";
+            public const string UpdatePostContent = "UpdatePostContent";
+            public const string GetAllPosts = "GetAllPosts";
+            public const string GetAllPostsByEvent = "GetAllPostsByEvent";
+            public const string GetPost = "GetPost";
+
+        }
     }
 }

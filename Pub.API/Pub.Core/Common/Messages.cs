@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+﻿using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,13 @@ namespace Pub.Core.Common {
             public const string TableAlreadyRegisteredWithGivenName = "Már létezik asztal a megadott névvel!";
             public const string TableAddedSuccessfully = "Asztal sikeresen regisztrálva!";
             public const string TableSeatNumberMustBeGreaterThanZero = "Az asztalhoz megadott ülőhelyek száma nem lehet 0 vagy kisebb";
+        }
+
+        public static class Post {
+            public const string PostCreatedSuccessfully = "A poszt sikeresen létrehozva!";
+            public const string PostDeletedSuccessfully = "A poszt törlése sikeres volt!";
+            public const string PostDoesntExistsOrDeleted = "A posztot nem létezik, vagy már törölve lett!";
+            public const string PostUpdatedSuccessfully = "A poszt sikeresen frissítve lett!";
         }
     }
 }
