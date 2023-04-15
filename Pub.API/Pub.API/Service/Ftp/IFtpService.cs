@@ -4,7 +4,7 @@
 
         Task<string> ListDirectoryAsync(string? path);
 
-        Task UploadFileAsync(byte[] fileData, string destinationPath, string fileName);
+        Task UploadFileAsync(string fileData, string destinationPath, string fileName);
 
         string DownloadFile(string filePath, string fileName);
     }

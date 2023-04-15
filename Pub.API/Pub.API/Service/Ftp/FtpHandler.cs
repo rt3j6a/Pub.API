@@ -45,7 +45,7 @@ namespace Pub.API.Service.Ftp {
             return dirsData;
         }
 
-        public async Task UploadFileAsync(byte[] fileData, string destinationPath,string fileName) {
+        public async Task UploadFileAsync(string fileData, string destinationPath,string fileName) {
 
             FtpWebRequest req = (FtpWebRequest)WebRequest.Create(host+destinationPath + fileName);
             req.UseBinary = true;
@@ -53,7 +53,7 @@ namespace Pub.API.Service.Ftp {
             req.Credentials = new NetworkCredential(user, password);
             req.ContentLength=fileData.Length;
             Stream reqStream = await req.GetRequestStreamAsync();
-            await reqStream.WriteAsync(fileData,0,fileData.Length);
+            await reqStream.WriteAsync(Convert.FromBase64String(fileData),0,fileData.Length);
             reqStream.Close();
 
         }

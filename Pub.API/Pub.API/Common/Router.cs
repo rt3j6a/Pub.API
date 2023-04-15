@@ -72,8 +72,25 @@
             public const string GetAllResults = "GetAllResults";
             public const string GetAllResultsByEvent = "GetAllResultsByEvent";
             public const string GetResult = "GetResult";
+        }
 
+        public static class Question {
+            public const string PrefixName = "Question";
 
+            public const string AddQuestion = "AddQuestion";
+            public const string UpdateQuestion = "UpdateQuestion";
+            public const string RemoveQuestion = "RemoveQuestion";
+            public const string GetAllQuestions = "GetAllQuestions";
+            public const string GetAllQuestionsForEvent = "GetAllQuestionsForEvent";
+            public const string GetQuestion = "GetQuestion";
+        }
+
+        public static class Picture {
+            public const string PrefixName = "Picture";
+
+            public const string UploadPicture = "UploadPicture";
+            public const string DownloadPicture = "DownloadPicture";
+            public const string GetPictureNamesForEvent = "GetPictureNamesForEvent";
         }
     }
 }

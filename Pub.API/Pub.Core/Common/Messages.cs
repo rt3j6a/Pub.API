@@ -63,5 +63,18 @@ namespace Pub.Core.Common {
             public const string ResultDoestnExistOrAlreadyDeleted = "Az eredmény nem létezik, vagy már korábban törölve lett!";
             public const string ResultTeamScoreUpdatedSuccessfully = "A pontszám frissítése sikeres volt!";
         }
+
+        public static class Picture {
+            public const string LinkAlreadyCreatedForEvent = "Az eseményhez már hoztak létre egy albumot!";
+            public const string EventLinkCreatedSuccessfully = "Az album sikeresen létrehozva az eseményhez!";
+        }
+
+
+        public static class Question {
+            public const string QuestionAddedSuccessfully = "A kérdés sikeresen hozzáadva az eseményhez!";
+            public const string QuestionDoesntExistsOrAlreadyRemoved = "A kérdés nem létezik, vagy már törölve lett!";
+            public const string QuestionDeletedSuccessfully = "A kérdés sikeresen törölve!";
+            public const string QuestionUpdatedSuccessfully = "A kérdés sikeresen frissítve!";
+        }
     }
 }
