@@ -13,6 +13,8 @@ namespace Pub.Core.Manager {
         public async Task<(bool success, string message)> AddAccountAsync(string emailAddress, string loginName, string password) {
             var accountExists = await provider.Accounts.AnyAsync(x => x.EmailAddress.Equals(emailAddress) || x.AccountName.Equals(loginName));
 
+            
+
             if (accountExists) {
                 return (false, Messages.Authentication.AccountAlreadyExistsWithGivenCredentials);
             }
