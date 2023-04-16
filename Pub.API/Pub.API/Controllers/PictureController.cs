@@ -45,6 +45,10 @@ namespace Pub.API.Controllers {
             //a path a message-ben lesz
             string path = linkResult.message;
 
+            if (!ftpService.DoesFtpDirectoryExist(path)) {
+                await ftpService.CreateFtpFolderAsync(path);
+            }
+
             await ftpService.UploadFileAsync(request.PictureDataBase64, path, request.FileName);
 
             return Ok();

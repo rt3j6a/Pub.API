@@ -28,9 +28,12 @@ namespace Pub.Core.Manager {
                 return (true, link.PicturesSourceRoute);
             }
 
+            string today = string.Format("{0}_{1}_{2}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            string route = string.Format("event_{0} {1}", eventId, today);
+
             PicutreEventLink newLink = new PicutreEventLink { 
                 EventId = eventId,
-                PicturesSourceRoute=string.Format("event_{0}_{1}",eventId,DateTime.UtcNow)
+                PicturesSourceRoute=route
             };
 
             await provider.PicutreEventLinks.AddAsync(newLink);

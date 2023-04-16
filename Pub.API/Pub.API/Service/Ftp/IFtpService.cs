@@ -7,5 +7,7 @@
         Task UploadFileAsync(string fileData, string destinationPath, string fileName);
 
         string DownloadFile(string filePath, string fileName);
+
+        bool DoesFtpDirectoryExist(string path);
     }
 }

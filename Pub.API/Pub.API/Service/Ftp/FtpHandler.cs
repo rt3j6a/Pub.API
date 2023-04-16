@@ -15,18 +15,37 @@ namespace Pub.API.Service.Ftp {
             password = configuration["Ftp:Password"];
         }
 
+        public bool DoesFtpDirectoryExist(string path) {
+            bool isexist = false;
+
+            try {
+
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + host + "/" + path);
+                request.Credentials = new NetworkCredential(user, password);
+                request.Method = WebRequestMethods.Ftp.ListDirectory;
+                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse()) {
+                    isexist = true;
+                }
+            } catch (WebException ex) {
+                if (ex.Response != null) {
+                    FtpWebResponse response = (FtpWebResponse)ex.Response;
+                    if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable) {
+                        return false;
+                    }
+                }
+            }
+            return isexist;
+        }
+
+
         public async Task<bool> CreateFtpFolderAsync(string? path) {
-            Uri uri=new Uri("ftp://"+host+path);
+            Uri uri=new Uri("ftp://"+host+"/"+path);
             WebRequest request = WebRequest.Create(uri);
             request.Method = WebRequestMethods.Ftp.MakeDirectory;
             request.Credentials = new NetworkCredential(user, password);
             var result=(FtpWebResponse)await request.GetResponseAsync();
             result.Close();
-
-            if (result.StatusCode.HasFlag(HttpStatusCode.OK)) {
-                return true;
-            }
-            return false;
+            return true;
             
         }
 
@@ -47,13 +66,14 @@ namespace Pub.API.Service.Ftp {
 
         public async Task UploadFileAsync(string fileData, string destinationPath,string fileName) {
 
-            FtpWebRequest req = (FtpWebRequest)WebRequest.Create(host+destinationPath + fileName);
+            FtpWebRequest req = (FtpWebRequest)WebRequest.Create("ftp://"+host+"/"+destinationPath+"/"+ fileName);
             req.UseBinary = true;
             req.Method = WebRequestMethods.Ftp.UploadFile;
             req.Credentials = new NetworkCredential(user, password);
             req.ContentLength=fileData.Length;
             Stream reqStream = await req.GetRequestStreamAsync();
-            await reqStream.WriteAsync(Convert.FromBase64String(fileData),0,fileData.Length);
+            byte[] decodedData=Convert.FromBase64String(fileData);
+            await reqStream.WriteAsync(decodedData,0,decodedData.Length);
             reqStream.Close();
 
         }
@@ -62,7 +82,7 @@ namespace Pub.API.Service.Ftp {
             WebClient client = new WebClient() {
                 Credentials = new NetworkCredential(user, password)
             };
-            Uri uri = new Uri(host+filePath + fileName);
+            Uri uri = new Uri("ftp://"+host+"/"+filePath+"/"+fileName);
             byte[] fileData = client.DownloadData(uri);
             client.Dispose();
             return Convert.ToBase64String(fileData);
