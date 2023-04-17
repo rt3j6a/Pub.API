@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Pub.Core.Common {
+    /// <summary>
+    /// Adatbázis enumjai.
+    /// </summary>
     public enum EventStatus {
         active,
         occured,

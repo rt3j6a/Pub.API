@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Http.Json;
 using System.Text.Json;
 
 namespace Pub.API.Common {
+    /// <summary>
+    /// Globális hibakezelő middleware.
+    /// </summary>
     public class ExceptionHandler {
         //Tartalmazza a http-kérés eredményét.
         private readonly RequestDelegate requestDelegate;

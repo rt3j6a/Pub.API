@@ -2,6 +2,7 @@
 using NLog;
 
 namespace Pub.API.Common {
+
     public static class LogHandler  {
 
         private static NLog.ILogger logger = LogManager.GetCurrentClassLogger();

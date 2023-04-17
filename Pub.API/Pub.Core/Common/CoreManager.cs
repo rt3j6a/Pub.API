@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Pub.Core.Common
 {
+    /// <summary>
+    /// Fő manager osztály. Ebből örököltetve elérhető lesz a DBProvider állomány globálisan.
+    /// </summary>
     public abstract class CoreManager : IDisposable
     {
         protected readonly IConfiguration configuration;

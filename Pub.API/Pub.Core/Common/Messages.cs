@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Pub.Core.Common {
+    /// <summary>
+    /// Core üzenetek itt vannak definiálva.
+    /// </summary>
     public static class Messages {
 
         public const string InternalServerError = "Szerver oldali hiba történt! Vegye fel a kapcsolatot a fejlesztővel.";

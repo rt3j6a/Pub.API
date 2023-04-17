@@ -1,4 +1,7 @@
 ﻿namespace Pub.API.Common {
+    /// <summary>
+    /// Controller routing osztály. 
+    /// </summary>
     public static class Router {
 
         public const string VersionOne = "V1";

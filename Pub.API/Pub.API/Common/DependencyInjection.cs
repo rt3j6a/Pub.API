@@ -6,6 +6,9 @@ using Pub.Core.Provider;
 using System.Text;
 
 namespace Pub.API.Common {
+    /// <summary>
+    /// Minden DI-t ez intéz.
+    /// </summary>
     public static class DependencyInjection {
         public static IServiceCollection AddAuthenticationService(this IServiceCollection services, IConfiguration configuration) {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
